@@ -1,0 +1,61 @@
+version: '3'
+services:
+    truyum-v2-mysql:
+        image: mysql:8.0.18
+        container_name: truyum-v2-mysql
+        ports:
+          - "33066:3306"     
+        environment:
+          - MYSQL_ROOT_PASSWORD=root
+        volumes:
+          - d:/truyumdb:/var/lib/mysql
+          - ./dbscripts:/docker-entrypoint-initdb.d 
+    eureka-discovery-server:
+        image: eureka-discovery-app
+        build: eureka-discovery-server/.
+        container_name: eureka-discovery-server-truyum
+        ports:
+          - 8765:8761
+    authentication:
+        image: authentication-app
+        build: authentication/.
+        container_name: authentication-truyum
+        ports:
+          - 8095:8040      
+        depends_on:
+          - truyum-v2-mysql
+          - eureka-discovery-server-truyum
+        links:
+          - truyum-v2-mysql
+          - eureka-discovery-server-truyum
+    menuitem-service:
+        image: menuitem-app
+        build: menuitem-service/.
+        container_name: menuitem-service-truyum
+        ports:
+          - 8097:8086
+        depends_on:
+          - truyum-v2-mysql
+          - eureka-discovery-server-truyum     
+        links:
+          - truyum-v2-mysql
+          - eureka-discovery-server-truyum
+    zuul-gateway:
+        image: zuul-gateway-app
+        build: zuul-gateway/.
+        container_name: zuul-gateway-truyum
+        ports:
+          - 8096:8083      
+        depends_on:
+          - authentication-truyum
+          - menuitem-service-truyum
+        links:
+          - authentication-truyum
+          - menuitem-service-truyum
+    angular: 
+        build: webapp/.
+        container_name: angular-docker
+        image: truyum-angular-image
+        network_mode: host
+        ports: 
+          - "4200:4200"
