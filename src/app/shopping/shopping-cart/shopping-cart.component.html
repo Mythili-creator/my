@@ -1,0 +1,56 @@
+<nav class="navbar text-light navbar-expand-lg  navbar-dark navbar_top">
+	<a class="navbar-brand" routerLink="/food-search"> <i id="truyum-nav-logo" class="material-icons">restaurant_menu</i><span id="truyum-heading">
+			truYum</span></a>
+	 <button type="button" class="navbar-toggler" data-toggle="collapse"
+                    data-target="#x">
+                    <span class="navbar-toggler-icon" ></span>
+                </button>
+	<div id="x" class="collapse navbar-collapse">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item"><a class="nav-link " id="truyum-navbar-menus" routerLink="/food-search">Menu Items</a>
+			</li>
+			<li class="nav-item" *ngIf="!isCustomer"><a class="nav-link " id="truyum-navbar-menus" routerLink="/shopping-cart">Cart</a></li>
+			<li class="nav-item mt-2" id="truyum-navbar-menus"><i class="material-icons">account_box</i>{{userName}}
+			</li>
+			<li class="nav-item"><a class="nav-link " id="truyum-navbar-menus" (click)="logOut()">Logout</a></li>
+		</ul>
+	</div>
+</nav>
+
+<div *ngIf="displayCart.total>0">
+	<div class="container ">
+		<h2>Cart</h2>
+		<div class="container" *ngIf="isRemoved">
+			<div class="alert alert-warning">Item removed from Cart!!!
+			</div>
+		</div>
+		<div class="list-group">
+			<div class="list-group-item list-group-item-action" *ngFor="let dis of displayCart.menuItemList">
+				<div class="d-flex w-100 justify-content-between">
+					<h5 class="mb-1">{{dis.name}}</h5>
+					<small>{{dis.price}}</small>
+				</div>
+				<button class="material-icons float-right" id="trash" (click)="removeCart(dis.id)">delete</button>
+
+
+			</div>
+			<div class="list-group-item list-group-item-action">
+				<div class="d-flex w-100 justify-content-between">
+					<h2 class="mb-1">Total</h2>
+					<h6 class="mt-2">{{displayCart.total | currency : "INR"}}</h6>
+				</div>
+			</div>
+
+		</div>
+	</div><br>
+
+</div>
+<br><br>
+<div *ngIf="isEmpty">
+	<div class="container">
+		<h2>Cart</h2>
+		<div class="alert alert-danger">Use <a [routerLink]="['/food-search']">Add to Cart</a> option in menu item list
+		</div>
+	</div>
+
+</div>

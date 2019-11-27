@@ -1,0 +1,54 @@
+<div class="container-fluid mb-5">
+	<div class="card-deck">
+		<div class="col-12 col-md-6 col-lg-3" *ngFor="let food of food">
+			<div class="card">
+				<img src="{{food.url}}" class="card-img-top" alt="Image Not Found" />
+				<div class="card-body">
+					<div class="row col-12">
+
+						<label for="name">
+							<h6 id="name">{{food.name}}</h6>
+						</label> <span class="ml-auto" id="price"><label
+								for="price">&#8377;{{food.price}}</label></span>
+					</div>
+					<div class="ml-auto" *ngIf="added && food.id == addedId">
+						<div class="alert alert-success">Added to cart successfully!!!
+						</div>
+					</div>
+					<div class="row col-12">
+						<span class="badge badge-success mb-3 mr-1" *ngIf="isAdmin" id="active"><label for="active"
+								*ngIf="food.isAvailable"> Active</label></span>
+						<span class="badge badge-danger mb-3 mr-1" *ngIf="isAdmin" id="active"><label for="active"
+								*ngIf="!food.isAvailable"> Inactive</label></span>
+						<span id="category"><label for="category">{{food.category}}</label></span>
+						<div class="ml-auto" *ngIf="food.freeDelivery">
+							<i class="material-icons ml-auto free">local_shipping</i> <span class="badge badge-info mb-3" id="freeDelivery">
+							<label for="freeDelivery ">free</label>
+							
+						</span>
+						</div>
+					</div>
+					<div class="row col-12" *ngIf="!isAdmin">
+						<a id="truyum-addtocart" class="btn ml-auto" (click)="addToCart(food.id)">
+							<i class="material-icons btn">add_shopping_cart</i> <span class="btn">Add To Cart</span>
+						</a>
+					</div>
+					<div class="row col-12" *ngIf="isAdmin">
+						<div>
+							<i class="material-icons">access_time</i><span id="dateofLaunch"><label
+									for="dateofLaunch">Launch</label></span>
+							<div>{{food.dateOfLaunch | date}}</div>
+						</div>
+
+						<a [routerLink]="['/food-item-edit',food.id]" id="truyum-addtocart" class="btn ml-auto">
+							<i class="material-icons btn">edit</i> <span class="btn">Edit</span>
+						</a>
+						<router-outlet></router-outlet>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div><br>

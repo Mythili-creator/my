@@ -1,0 +1,60 @@
+<nav class="navbar  navbar-expand-lg navbar-dark text-light navbar_top">
+    <a class="navbar-brand" routerLink="/food-search"> <i id="truyum-nav-logo"
+                class="material-icons">restaurant_menu</i><span id="truyum-heading">
+                    truYum</span></a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse"
+                    data-target="#x">
+                    <span class="navbar-toggler-icon" ></span>
+                </button>
+            <div id="x" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item"><a class="nav-link "
+                        id="truyum-navbar-menus" routerLink="/food-search">Menu Items</a></li>
+                        
+                      <li class="nav-item"><a class="nav-link "
+                        id="truyum-navbar-menus" routerLink="/login">Login</a></li>
+                      <li class="nav-item"><a class="nav-link"
+                        id="truyum-navbar-menus" routerLink="/signup">Signup</a></li>
+                    </ul>
+                  </div>
+    </nav>
+
+<form #loginForm="ngForm">
+
+<div class="row">
+		<div class="col-xs-11 mt-5 ml-5 mr-5 mb-5 mx-auto">
+			<div class="card mt-5">
+        <span class="row  mt-5 ml-5 mr-5">
+  <h3>Login</h3></span>
+   <div class="alert alert-info " *ngIf="this.menuItemServiceService.ClickOnAdd">Please login before adding an item to cart.</div>
+   <div class="alert alert-danger " *ngIf="this.service.Invalid">Invalid Username/Password..</div>
+ <div class="row mt-5 ml-5 mr-5">
+						<div class="form-group col-12">
+      <label for="userName">Username</label> <div><input name="userName" required 
+        type="text" [(ngModel)]="loggedUser.userName" #userName=ngModel placeholder="Enter username" />
+        <div><small *ngIf="!userName.value && userName.touched" >Name field is required.</small></div>
+    </div></div>
+  </div>
+
+  <div class="row ml-5 mr-5">
+						<div class="form-group col-12 mt-2">
+      <label for="password">Password</label><div> <input name="password" type="password" required
+      [(ngModel)]="loggedUser.password" #password=ngModel placeholder="Enter password" />
+      <div><small *ngIf="!password.value && password.touched" >Password field is required.</small></div>
+
+    </div></div>
+  </div>
+ <div class="row  mt-3 ml-5 mr-5 mb-5">
+	<div class="col-6">
+    <button type="button" class="btn" [disabled]="!loginForm.valid" (click)="onLogin()">Login</button></div>
+    <span class="col-6">New here?<a routerLink="/signup">Signup</a></span>
+  
+</div>
+<div class="container  col-2 col-expand-lg mt-5 pb-3 mb-5 " *ngIf="!authenticated">	
+  		<div class="container">
+    <div class="alert alert-danger">Login Failed.. </div>
+  </div></div>
+</div>
+		</div>
+	</div>
+  </form>
