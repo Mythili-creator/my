@@ -1,54 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-#truyum-nav-logo,
-#truyum-heading {
-  width: 30px;
-  color:white;
-}
-i {
-  vertical-align: middle;
-}
 
-#truyum-heading {
-  font-weight: bold;
-}
-
-#truyum-navbar-menus {
-  color: #ffffff;
-  font-weight: bold;
-}
-
-#truyum-allpages-footer {
-  background-color: #ff641a;
-  font-size: 20px;
-  font-weight: bold;
-  color: #ffffff;
-}
-
-#price {
-  font-family: Arial;
-}
-
-.row {
-  margin-top: 5px;
-}
-
-.card {
-  margin-bottom: 50px;
-}
-
-.jumbotron {
-  background-image: url("https://images.unsplash.com/photo-1467453678174-768ec283a940?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1328&q=80");
-  min-height: 240px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-}
-
-small {
-  color: #ff0000;
-}
-.btn {
-  background-color:#ff641a;
-  color:#ffffff;
+#red-allpages-footer {
+      background-image: linear-gradient(to left, rgba(255,0,0,0), rgba(255,0,0,1));
+      font-size:20px;
+      font-style:bold;
+      color:black;
+      overflow:hidden;
 }

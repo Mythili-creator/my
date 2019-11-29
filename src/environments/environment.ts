@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8096/menuitem-service'  
+  baseUrl: 'http://localhost:8096/display' 
 };
 
 /*

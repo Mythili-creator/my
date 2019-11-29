@@ -1,0 +1,62 @@
+
+<div class="row">
+<div class="col-xs-11 mt-5 ml-5 mr-5 mb-5 mx-auto">
+			<div class="card mt-5">
+				<h1 class="mt-5 ml-5">Signup</h1>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+ 
+						<div class="row ml-5 mr-5">
+						<div class="col-md-6 col-xs-12 mt-5">
+              <label for="username">Username</label>
+        <div> <input id="userName" type="text" [formControl]="userName" placeholder="username" /></div>
+        <div *ngIf="userName.invalid && (userName.touched || userName.dirty)">
+          <small *ngIf="userName.errors.required">Username field is required.</small>
+        </div>
+						</div>
+      </div>
+    
+    <div class="row ml-5 mr-5">
+						<div class="col-md-6 col-xs-12 mt-5">
+              <label for="firstName">First Name</label> 
+        <div> <input id="firstName" type="text" [formControl]="firstName" placeholder="Enter first name" /></div>
+        <div *ngIf="firstName.invalid && (firstName.touched || firstName.dirty)">
+          <small *ngIf="firstName.errors.required">Firstname field is required.</small>
+          <small *ngIf="firstName.errors.pattern">Firstname field should not contain numbers.</small>
+        </div>
+      </div>
+      <div class="col-md-6 col-xs-12  mt-5">
+              <label for="lastName">Last Name</label> 
+        <div><input id="lastName" type="text" [formControl]="lastName" placeholder="Enter last name" /></div>
+        <div *ngIf="lastName.invalid && (lastName.touched || lastName.dirty)">
+          <small *ngIf="lastName.errors.required">Lastname field is required.</small>
+          <small *ngIf="lastName.errors.pattern">Lastname field should not contain numbers.</small>
+
+        </div>
+      </div>
+    </div>
+    <div class="row ml-5 mr-5">
+						<div class="col-md-6 col-xs-12 mt-5">
+              <label for="password">Password</label> 
+        <div> <input id="password" type="password" [formControl]="password" placeholder="Enter password" /></div>
+        <div *ngIf="password.invalid && (password.touched || password.dirty)">
+          <small *ngIf="password.errors.required">Password field is required.</small>
+        </div>
+      </div>
+  <div class="col-md-6 col-xs-12 mt-5">
+              <label for="confirmPassword">Confirm Password</label>
+        <div> <input id="confirmPassword" type="password" [formControl]="confirmPassword"
+            placeholder="Enter confirm password" /></div>
+        <div *ngIf="confirmPassword.invalid && (confirmPassword.touched || confirmPassword.dirty)">
+          <small *ngIf="confirmPassword.errors.required">Confirm Password field is required.</small>
+        </div><small class="text-danger" *ngIf="passwordMatch">Passwords does not match.</small>
+      </div>
+    </div>
+    <div class="row  mt-5 ml-5 mr-5 mb-5">
+      <div class="col-12">
+      <button type="submit" [disabled]="!userForm.valid" class="btn ml-3 mt-2">Signup</button>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+		</div>
